@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { Button } from "ui";
 import dedent from "dedent";
 import {
   Container,
@@ -38,12 +37,6 @@ export default function Home() {
             A powerful and intuitive code cleaner and refactorer to streamline
             your development process."
           </p>
-          <a
-            className="button"
-            href="https://github.com/react-simple-code-editor/react-simple-code-editor"
-          >
-            GitHub
-          </a>
           <EditorAreaContainer>
             <EditorArea>
               <EditorStyled
@@ -64,6 +57,7 @@ export default function Home() {
               />
             </EditorArea>
           </EditorAreaContainer>
+          <a className="button">convert</a>
         </EditorContent>
       </Container>
     </>

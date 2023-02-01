@@ -3,26 +3,31 @@ import tw from "twin.macro";
 import styled from "styled-components";
 
 export const EditorStyled = styled(Editor)`
-  ${tw`block font-mono bg-gray-100 rounded-md`}
+  font-size: 12px;
+  font-variant-ligatures: common-ligatures;
+  background-color: #fafafa;
+  border-radius: 3px;
+  width: 440px;
+  height: 200px;
 
   textarea {
-    ${tw`outline-none`}
+    outline: 0;
   }
-
-  font-variant-ligatures: common-ligatures;
 `;
 
 export const EditorContent = styled.div`
-  ${tw`mx-auto text-center`}
-  tab-size: 4ch;
+  padding: 10px;
+  text-align: center;
 `;
 
 export const EditorArea = styled.div`
-  ${tw`mt-4 overflow-auto max-h-96`}
+  tab-size: 4ch;
+  overflow: auto;
+  margin: 1.67em 0;
 `;
 
 export const Container = styled.div`
-  ${tw`flex items-center justify-center w-full h-full`}
+  ${tw`flex items-center justify-center`}
 `;
 
 export const EditorAreaContainer = styled.div`
