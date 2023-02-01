@@ -69,12 +69,14 @@ importers:
       autoprefixer: ^10.4.13
       babel-plugin-macros: ^3.1.0
       babel-plugin-twin: ^1.1.0
+      dedent: ^0.7.0
       eslint-config-custom: workspace:*
       next: latest
       postcss: ^8.4.20
       prismjs: ^1.29.0
       react: ^18.2.0
       react-dom: ^18.2.0
+      react-simple-code-editor: ^0.13.1
       styled-components: ^5.3.6
       tailwind-config: workspace:*
       tailwindcss: ^3.2.4
@@ -83,9 +85,11 @@ importers:
       typescript: ^4.9.4
       ui: workspace:*
     dependencies:
+      dedent: 0.7.0
       next: 13.1.6_pbqkqtl3ytrxhl67w6o5ecjene
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      react-simple-code-editor: 0.13.1_biqbaboplfbrettd7655fr4n2y
       styled-components: 5.3.6_vtcxgy2wlmese7djxl6h7ok674
       twin.macro: 3.1.0_tailwindcss@3.2.4
       ui: link:../../packages/ui
@@ -1174,6 +1178,10 @@ packages:
     dependencies:
       ms: 2.1.2
       supports-color: 5.5.0
+    dev: false
+
+  /dedent/0.7.0:
+    resolution: {integrity: sha512-Q6fKUPqnAHAyhiUgFU7BUzLiv0kd8saH9al7tnu5Q/okj6dnupxyTgFIBjVzJATdfIAm9NAsvXNzjaKa+bxVyA==}
     dev: false
 
   /deep-is/0.1.4:
@@ -2915,6 +2923,16 @@ packages:
 
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
+
+  /react-simple-code-editor/0.13.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-XYeVwRZwgyKtjNIYcAEgg2FaQcCZwhbarnkJIV20U2wkCU9q/CPFBo8nRXrK4GXUz3AvbqZFsZRrpUTkqqEYyQ==}
+    peerDependencies:
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /react/18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}

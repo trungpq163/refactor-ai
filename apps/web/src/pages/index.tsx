@@ -1,25 +1,71 @@
 import Head from "next/head";
 import { Button } from "ui";
+import dedent from "dedent";
+import {
+  Container,
+  EditorArea,
+  EditorContent,
+  EditorStyled,
+  EditorAreaContainer,
+} from "./index.styles";
+import { highlight, languages } from "prismjs";
+import { useState } from "react";
 
 export default function Home() {
+  const [code, setCode] = useState(dedent`
+    import React from "react";
+    import ReactDOM from "react-dom";
+    function App() {
+      return (
+        <h1>Hello world</h1>
+      );
+    }
+    ReactDOM.render(<App />, document.getElementById("root"));
+    `);
+  const handleChangeCode = (code: string) => {
+    setCode(code);
+  };
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <>
       <Head>
         <title>Web - Turborepo Example</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className="mx-auto w-auto px-4 pt-16 pb-8 sm:pt-24 lg:px-8">
-        <h1 className="mx-auto max-w-5xl text-center text-6xl font-extrabold leading-[1.1] tracking-tighter text-white sm:text-7xl lg:text-8xl xl:text-8xl">
-          Web <br className="hidden lg:block" />
-          <span className="inline-block bg-gradient-to-r from-brandred to-brandblue bg-clip-text text-transparent">
-            Turborepo Example
-          </span>{" "}
-        </h1>
-        <div className="mx-auto mt-5 max-w-xl sm:flex sm:justify-center md:mt-8">
-          <Button />
-        </div>
-      </main>
-    </div>
+      <Container>
+        <EditorContent>
+          <h1>refactor-ai</h1>
+          <p>
+            A powerful and intuitive code cleaner and refactorer to streamline
+            your development process."
+          </p>
+          <a
+            className="button"
+            href="https://github.com/react-simple-code-editor/react-simple-code-editor"
+          >
+            GitHub
+          </a>
+          <EditorAreaContainer>
+            <EditorArea>
+              <EditorStyled
+                placeholder="Type some code…"
+                value={code}
+                onValueChange={handleChangeCode}
+                highlight={(code) => highlight(code, languages.js, "js")}
+                padding={10}
+              />
+            </EditorArea>
+            <EditorArea>
+              <EditorStyled
+                placeholder="Type some code…"
+                value={code}
+                onValueChange={handleChangeCode}
+                highlight={(code) => highlight(code, languages.js, "js")}
+                padding={10}
+              />
+            </EditorArea>
+          </EditorAreaContainer>
+        </EditorContent>
+      </Container>
+    </>
   );
 }
