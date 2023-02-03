@@ -2,28 +2,44 @@ import Head from "next/head";
 import dedent from "dedent";
 import {
   Container,
-  EditorArea,
-  EditorContent,
+  ContainerContent,
+  ContainerEditorArea,
   EditorStyled,
-  EditorAreaContainer,
 } from "./index.styles";
 import { highlight, languages } from "prismjs";
 import { useState } from "react";
+import axios from "axios";
 
 export default function Home() {
-  const [code, setCode] = useState(dedent`
-    import React from "react";
-    import ReactDOM from "react-dom";
-    function App() {
-      return (
-        <h1>Hello world</h1>
-      );
-    }
-    ReactDOM.render(<App />, document.getElementById("root"));
-    `);
+  const [code, setCode] = useState<string>("");
+  const [result, setResult] = useState<string>("");
   const handleChangeCode = (code: string) => {
     setCode(code);
   };
+  const [loading, setLoading] = useState(false);
+
+  const handleRefactorCode = async () => {
+    const removeSpaceInCode = code.replace(/\s/g, "");
+    if (!removeSpaceInCode) {
+      window.alert("Please enter some code");
+      return;
+    }
+
+    if (removeSpaceInCode.length > 2048) {
+      window.alert("Please enter less than 2048 characters");
+      return;
+    }
+
+    setLoading(true);
+
+    const res = await axios.post("/api/refactor-code", {
+      message: removeSpaceInCode,
+    });
+
+    setResult(res.data.result);
+    setLoading(false);
+  };
+
   return (
     <>
       <Head>
@@ -31,34 +47,45 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <EditorContent>
+        <ContainerContent>
           <h1>refactor-ai</h1>
           <p>
             A powerful and intuitive code cleaner and refactorer to streamline
             your development process."
           </p>
-          <EditorAreaContainer>
-            <EditorArea>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "5rem",
+            }}
+          >
+            <ContainerEditorArea>
               <EditorStyled
                 placeholder="Type some code…"
                 value={code}
                 onValueChange={handleChangeCode}
                 highlight={(code) => highlight(code, languages.js, "js")}
                 padding={10}
+                onResize={() => {}}
               />
-            </EditorArea>
-            <EditorArea>
+            </ContainerEditorArea>
+            <ContainerEditorArea>
               <EditorStyled
                 placeholder="Type some code…"
-                value={code}
+                value={result}
                 onValueChange={handleChangeCode}
                 highlight={(code) => highlight(code, languages.js, "js")}
                 padding={10}
               />
-            </EditorArea>
-          </EditorAreaContainer>
-          <a className="button">convert</a>
-        </EditorContent>
+            </ContainerEditorArea>
+          </div>
+          <a className="button" onClick={handleRefactorCode}>
+            {loading ? "loading..." : "convert"}
+          </a>
+        </ContainerContent>
       </Container>
     </>
   );

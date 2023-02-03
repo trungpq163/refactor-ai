@@ -8,28 +8,28 @@ export const EditorStyled = styled(Editor)`
   background-color: #fafafa;
   border-radius: 3px;
   width: 440px;
-  height: 200px;
 
   textarea {
     outline: 0;
   }
 `;
 
-export const EditorContent = styled.div`
+export const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+`;
+
+export const ContainerContent = styled.div`
   padding: 10px;
   text-align: center;
 `;
 
-export const EditorArea = styled.div`
+export const ContainerEditorArea = styled.div`
   tab-size: 4ch;
+  max-height: 400px;
   overflow: auto;
   margin: 1.67em 0;
-`;
-
-export const Container = styled.div`
-  ${tw`flex items-center justify-center`}
-`;
-
-export const EditorAreaContainer = styled.div`
-  ${tw`flex flex-row items-center justify-center gap-6`}
 `;
